@@ -1,4 +1,3 @@
-
 const auth = (email, password) => {
   if (email === 'copito@mail.com' && password === 'cop123') {
     return {
