@@ -2,9 +2,9 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 const InteractionSchema = new Schema({
-  catId: String,
+  cat_id: String,
   cats_likes: [String],
-  ats_unlikes: [String],
+  cats_unlikes: [String],
   cats_matches: [String]
 })
 
