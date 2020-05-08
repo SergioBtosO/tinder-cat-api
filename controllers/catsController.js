@@ -1,13 +1,24 @@
-const { auth } = require('./../services/cats/auth')
+const loginService = require('./../services/cats/login')
+const signupService = require('./../services/cats/signup')
+const addInterestService = require('./../services/cats/add-interest')
+const removeInterestService = require('./../services/cats/remove-interest')
+const updatePreferencesService = require('./../services/cats/update-preferences')
 
 const login = (req, res) => {
   const { email, pass } = req.query
-  const response = auth(email, pass)
+  const response = loginService(email, pass)
   res.json(response)
 }
 
-const signup = (req, res) => {
-  res.send('Signup')
+const signup = async (req, res) => {
+  const cat = req.body
+  try { 
+    const response = await signupService(cat)
+    res.json(response)
+  } catch (err) {
+    res.json(err)
+  }
+
 }
 
 const catList = (req, res) => {
@@ -22,20 +33,22 @@ const unliked = (req, res) => {
   res.send('Unliked')
 }
 
-const addInterest = (req, res) => {
-  res.send('Add Interest')
+const addInterest = async (req, res) => {
+  const { catId, interestId } = req.body
+  const response = await addInterestService(catId, interestId)
+  res.json(response)
 }
 
-const removeInterest = (req, res) => {
-  res.send('Remove Interest')
+const removeInterest = async (req, res) => {
+  const { catId, interestId } = req.body
+  const response = await removeInterestService(catId, interestId)
+  res.json(response)
 }
 
-const updateInterest = (req, res) => {
-  res.send('Update Interest')
-}
-
-const updatePreferences = (req, res) => {
-  res.send('Update Preferences')
+const updatePreferences = async (req, res) => {
+  const { catId, preferences } = req.body
+  const response = await updatePreferencesService(catId, preferences)
+  res.json(response)
 }
 
 module.exports = {
@@ -46,6 +59,5 @@ module.exports = {
   unliked,
   addInterest,
   removeInterest,
-  updateInterest,
   updatePreferences
 }

@@ -1,4 +1,4 @@
-const auth = (email, password) => {
+const login = (email, password) => {
   if (email === 'copito@mail.com' && password === 'cop123') {
     return {
       status: 1,
@@ -11,5 +11,5 @@ const auth = (email, password) => {
 }
 
 module.exports = {
-  auth
+  login
 }
