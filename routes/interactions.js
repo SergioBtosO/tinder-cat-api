@@ -4,7 +4,7 @@ const {
     addUnliked
 } = require('./../controllers/interactionsController')
 
-router.post('/', addLiked)
-router.get('/', addUnliked)
+router.post('/liked', addLiked)
+router.post('/unliked', addUnliked)
 
 module.exports = router
