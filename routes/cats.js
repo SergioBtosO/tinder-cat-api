@@ -3,8 +3,6 @@ const {
   login,
   signup,
   catList,
-  liked,
-  unliked,
   addInterest,
   removeInterest,
   updatePreferences
@@ -13,8 +11,6 @@ const {
 router.get('/login', login)
 router.post('/signup', signup)
 router.get('/', catList)
-router.post('/liked', liked)
-router.post('/unliked', unliked)
 router.post('/interest', addInterest)
 router.delete('/interest', removeInterest)
 router.put('/preferences', updatePreferences)

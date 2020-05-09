@@ -25,14 +25,6 @@ const catList = (req, res) => {
   res.send('List')
 }
 
-const liked = (req, res) => {
-  res.send('Liked')
-}
-
-const unliked = (req, res) => {
-  res.send('Unliked')
-}
-
 const addInterest = async (req, res) => {
   const { catId, interestId } = req.body
   const response = await addInterestService(catId, interestId)
