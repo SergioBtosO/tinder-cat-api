@@ -47,8 +47,6 @@ module.exports = {
   login,
   signup,
   catList,
-  liked,
-  unliked,
   addInterest,
   removeInterest,
   updatePreferences

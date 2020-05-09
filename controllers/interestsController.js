@@ -1,16 +1,22 @@
 const addInterestService = require('./../services/interests/add-interest')
 const getAllInterestsService = require('./../services/interests/list-interests')
 
-const addLiked = (req, res) => {
-  res.send('Liked')
+const getAll = async (req, res) => {
+  const response = await  getAllInterestsService()
+  res.json(response)
 }
 
-const addUnliked = (req, res) => {
-  res.send('Unliked')
+const add = async (req, res) => {
+  const interest = req.body
+  try { 
+    const response = await addInterestService(interest)
+    res.json(response)
+  } catch (err) {
+    res.json(err)
+  }
 }
-
 
 module.exports = {
-  addLiked,
-  addUnliked
+  getAll,
+  add
 }
