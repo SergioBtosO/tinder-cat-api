@@ -4,13 +4,13 @@ const getAllInterestsService = require('./../services/interests/list-interests')
 const getAll = async (req, res) => {
   const { catId } = req.query
   console.log('catId: ', catId)
-  const response = await  getAllInterestsService()
+  const response = await getAllInterestsService()
   res.json(response)
 }
 
 const add = async (req, res) => {
   const interest = req.body
-  try { 
+  try {
     const response = await addInterestService(interest)
     res.json(response)
   } catch (err) {

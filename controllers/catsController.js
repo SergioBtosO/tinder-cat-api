@@ -4,26 +4,24 @@ const addInterestService = require('./../services/cats/add-interest')
 const removeInterestService = require('./../services/cats/remove-interest')
 const updatePreferencesService = require('./../services/cats/update-preferences')
 
-const login = async(req, res) => {
+const login = async (req, res) => {
   const { email, pass } = req.query
-  try{
+  try {
     const response = await loginService(email, pass)
     res.json(response)
   } catch (err) {
     res.json(err)
   }
-
 }
 
 const signup = async (req, res) => {
   const cat = req.body
-  try { 
+  try {
     const response = await signupService(cat)
     res.json(response)
   } catch (err) {
     res.json(err)
   }
-
 }
 
 const catList = (req, res) => {

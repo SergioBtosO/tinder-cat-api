@@ -1,7 +1,7 @@
 var router = require('express').Router()
 const {
-    addLiked,
-    addUnliked
+  addLiked,
+  addUnliked
 } = require('./../controllers/interactionsController')
 
 router.post('/liked', addLiked)
