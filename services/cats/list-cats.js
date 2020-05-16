@@ -7,13 +7,13 @@ const listCats = async (catIdData) => {
 
     const hoy = new Date()
     console.log('Hoy: ', hoy)
-    const dateMin = new Date(hoy.setMonth(hoy.getMonth() - (CatId.preferences.ageMin * 12)))
-    console.log('Min: ', dateMin)
-    const dateMax = new Date(hoy.setMonth(hoy.getMonth() - (CatId.preferences.ageMax * 12)))
+    const dateMax = new Date(hoy.setMonth(hoy.getMonth() - (CatId.preferences.ageMin * 12)))
     console.log('Max: ', dateMax)
+    const dateMin = new Date(hoy.setMonth(hoy.getMonth() - (CatId.preferences.ageMax * 12)))
+    console.log('Min: ', dateMin)
     const response = await CatModel.find({
       gender: CatId.preferences.gender,
-      birthday: { $gte: dateMax, $lte: dateMin }
+      birthday: { $gte: dateMin, $lte: dateMax }
     })
     // const response = await CatModel.find({interests : CatId.interests, _id :{$ne:catIdData} })
 
