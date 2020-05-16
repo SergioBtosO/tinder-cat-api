@@ -13,15 +13,12 @@ const addLiked = async (req, res) => {
 
 const addUnliked = async (req, res) => {
   const { catId, catUnliked } = req.body
-  console.log(catId, catUnliked)
   try {
     const response = await addUnlikedService(catId, catUnliked)
     res.json(response)
   } catch (err) {
     res.json(err)
   }
-
-  res.send('Unliked')
 }
 
 module.exports = {

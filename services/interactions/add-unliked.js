@@ -1,11 +1,39 @@
-const InteractionsModel = require('../../models/cat')
+const InteractionsModel = require('../../models/interactions')
 
-const addUnliked = async (catId, catUnliked) => {
+const addUnliked = async (catIdData, catUnlikedData) => {
   try {
-    const interaction = await InteractionsModel.findByOne({ cat_id: catId })
-    interaction.cats_unlikes.push(catUnliked)
-    interaction.save()
-    return { status: 1, cat: interaction.cat_id, unliked: catUnliked }
+    console.log('Objetos: ', catIdData, catUnlikedData)
+
+    const CatId = (await InteractionsModel.findOne({ cat_id: catIdData.cat_id }))
+      ? await InteractionsModel.findOne({ cat_id: catIdData.cat_id }) : (await InteractionsModel(catIdData).save())
+
+    const CatUnliked = (await InteractionsModel.findOne({ cat_id: catUnlikedData.cat_id }))
+      ? await InteractionsModel.findOne({ cat_id: catUnlikedData.cat_id }) : (await InteractionsModel(catUnlikedData).save())
+
+    console.log('Objetos: ', CatId, CatUnliked)
+
+    if (CatId.cats_matches.indexOf(CatUnliked.cat_id) >= 0) {
+      // Borra catLiked a matches de catId
+      CatId.cats_matches.pull(CatUnliked.cat_id)
+    }
+
+    if (CatId.cats_likes.indexOf(CatUnliked.cat_id) >= 0) {
+    // Borra catLiked a likes de catId
+      CatId.cats_likes.pull(CatUnliked.cat_id)
+    }
+
+    if (CatUnliked.cats_matches.indexOf(CatId.cat_id) >= 0) {
+      // Borra catLiked a matches de catId
+      CatUnliked.cats_matches.pull(CatId.cat_id)
+      // Inserta catId a likes de catLiked
+      CatUnliked.cats_likes.push(CatId.cat_id)
+      await CatUnliked.save()
+    }
+
+    CatId.cats_unlikes.push(CatUnliked.cat_id)
+    await CatId.save()
+
+    return { status: 1, cat: CatId.cat_id, unliked: CatUnliked.cat_id }
   } catch (err) {
     return { status: 2, msg: 'unliked not added to cat' }
   }
