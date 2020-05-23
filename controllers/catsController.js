@@ -7,32 +7,20 @@ const getAllCatsService = require('./../services/cats/list-cats')
 
 const login = async (req, res) => {
   const { email, pass } = req.query
-  try {
-    const response = await loginService(email, pass)
-    res.json(response)
-  } catch (err) {
-    res.json(err)
-  }
+  const response = await loginService(email, pass)
+  res.json(response)
 }
 
 const signup = async (req, res) => {
   const cat = req.body
-  try {
-    const response = await signupService(cat)
-    res.json(response)
-  } catch (err) {
-    res.json(err)
-  }
+  const response = await signupService(cat)
+  res.json(response)
 }
 
 const catList = async (req, res) => {
-  try {
-    const { catId } = req.query
-    const response = await getAllCatsService(catId)
-    res.json(response)
-  } catch (err) {
-    res.json(err)
-  }
+  const { catId } = req.query
+  const response = await getAllCatsService(catId)
+  res.json(response)
 }
 
 const addInterest = async (req, res) => {
