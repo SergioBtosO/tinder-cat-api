@@ -2,7 +2,8 @@ const addLikedService = require('./../services/interactions/add-liked')
 const addUnlikedService = require('./../services/interactions/add-unliked')
 
 const addLiked = async (req, res) => {
-  const { catId, catLiked } = req.body
+  const { catLiked } = req.body
+  const { catId } = req.query
   try {
     const response = await addLikedService(catId, catLiked)
     res.json(response)
@@ -12,7 +13,8 @@ const addLiked = async (req, res) => {
 }
 
 const addUnliked = async (req, res) => {
-  const { catId, catUnliked } = req.body
+  const { catUnliked } = req.body
+  const { catId } = req.query
   try {
     const response = await addUnlikedService(catId, catUnliked)
     res.json(response)

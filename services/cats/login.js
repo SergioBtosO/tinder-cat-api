@@ -2,9 +2,9 @@ const jwt = require('jsonwebtoken')
 const { SECRET } = require('../../config/constants')
 const CatModel = require('../../models/cat')
 
-const login = async (email, pass) => {
+const login = async (email, password) => {
   try {
-    const query = { email, pass }
+    const query = { email, password }
     const cat = await CatModel.findOne(query)
     if (cat) {
       const payload = {

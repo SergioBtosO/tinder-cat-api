@@ -2,6 +2,7 @@ const router = require('express').Router()
 const {
   login,
   signup,
+  autologin,
   catList,
   addInterest,
   removeInterest,
@@ -11,9 +12,10 @@ const authMiddleware = require('../middleware/verify-auth')
 
 router.get('/login', login)
 router.post('/signup', signup)
+router.post('/autologin', authMiddleware, autologin)
 router.get('/', authMiddleware, catList)
-router.post('/interest', addInterest)
-router.delete('/interest', removeInterest)
-router.put('/preferences', updatePreferences)
+router.post('/interest', authMiddleware, addInterest)
+router.delete('/interest', authMiddleware, removeInterest)
+router.put('/preferences', authMiddleware, updatePreferences)
 
 module.exports = router

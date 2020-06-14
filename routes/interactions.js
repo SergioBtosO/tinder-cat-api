@@ -3,8 +3,9 @@ const {
   addLiked,
   addUnliked
 } = require('./../controllers/interactionsController')
+const authMiddleware = require('../middleware/verify-auth')
 
-router.post('/liked', addLiked)
-router.post('/unliked', addUnliked)
+router.post('/liked', authMiddleware, addLiked)
+router.post('/unliked', authMiddleware, addUnliked)
 
 module.exports = router

@@ -3,12 +3,13 @@ const app = express()
 const catsRoutes = require('./routes/cats')
 const interestsRoutes = require('./routes/interests')
 const interactionsRoutes = require('./routes/interactions')
-
-app.use(express.json())
-app.use(express.urlencoded({ extended: false }))
+const cors = require('cors')
 
 require('./connection/mongoConnection')
 
+app.use(cors())
+app.use(express.json())
+app.use(express.urlencoded({ extended: false }))
 app.get('/', (req, res) => res.send('Hola!'))
 
 app.use('/cats', catsRoutes)

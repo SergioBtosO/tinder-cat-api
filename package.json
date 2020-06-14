@@ -14,11 +14,12 @@
   "author": "SergioBtosO",
   "license": "MIT",
   "dependencies": {
+    "cors": "^2.8.5",
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^5.9.10"
+    "mongoose": "^5.9.15"
   },
   "devDependencies": {
-    "standard": "^14.3.3"
+    "standard": "^14.3.4"
   }
 }

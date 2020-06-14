@@ -7,7 +7,7 @@ const CatSchema = new Schema({
   email: String,
   nick: String,
   gender: String,
-  pass: String,
+  password: String,
   birthday: Date,
   image: String,
   preferences: {
