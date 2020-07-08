@@ -18,6 +18,7 @@ const signup = async (req, res) => {
   res.json(response)
 }
 
+
 const autologin = async (req, res) => {
   const { catId } = req.query
   const response = await autologinService(catId)
@@ -31,7 +32,8 @@ const catList = async (req, res) => {
 }
 
 const addInterest = async (req, res) => {
-  const { catId, interestId } = req.body
+  const { catId } = req.query
+  const { interestId } = req.body
   const response = await addInterestService(catId, interestId)
   res.json(response)
 }

@@ -6,7 +6,6 @@ const verifyAuth = (req, res, next) => {
     const token = req.headers.authorization.split(' ')[1]
     try {
       const payload = jwt.verify(token, SECRET)
-      console.log('payload: ', payload)
       req.query.catId = payload.catId
     } catch (err) {
       res.status(401).json({ error: 'Unauthorized' })

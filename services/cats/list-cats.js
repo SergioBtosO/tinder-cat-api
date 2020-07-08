@@ -22,19 +22,22 @@ const listCats = async (catIdData) => {
     // filtro para las preferencia de edad
     const dateCurrent = new Date()
 
-    const dateTo = new Date(dateCurrent.setFullYear(dateCurrent.getFullYear() - CatId.preferences.ageMin))
+    const dateTo = new Date(dateCurrent.setFullYear(dateCurrent.getFullYear() - CatId.preferences.age_min))
 
-    const dateFrom = new Date(dateCurrent.setFullYear(dateCurrent.getFullYear() - CatId.preferences.ageMax))
+    const dateFrom = new Date(dateCurrent.setFullYear(dateCurrent.getFullYear() - CatId.preferences.age_max))
+
+    console.log('dateTo: ', dateTo)
+    console.log('dateFrom: ', dateFrom)
 
     // consulta por preferencias e interaciones
-    const response = await CatModel.find({
+    const cats = await CatModel.find({
       gender: CatId.preferences.gender,
       birthday: { $gte: dateFrom, $lte: dateTo },
       interests: { $in: CatId.interests },
       _id: { $nin: notIds }
     })
 
-    return { status: 1, response }
+    return { status: 1, cats }
   } catch (err) {
     return { status: 2, msg: 'Error list cats' }
   }

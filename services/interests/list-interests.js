@@ -2,8 +2,8 @@ const InterestModel = require('./../../models/interest')
 
 const listInterests = async () => {
   try {
-    const response = await InterestModel.find()
-    return { status: 1, response }
+    const interestsList = await InterestModel.find()
+    return { status: 1, interestsList }
   } catch (err) {
     return { status: 2, msg: 'Error list interest' }
   }

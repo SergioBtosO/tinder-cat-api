@@ -12,8 +12,8 @@ const CatSchema = new Schema({
   image: String,
   preferences: {
     gender: String,
-    ageMin: Number,
-    ageMax: Number
+    age_min: Number,
+    age_max: Number
   },
   interests: [String]
 })
