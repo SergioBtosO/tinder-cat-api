@@ -3,7 +3,7 @@ const getAllInterestsService = require('./../services/interests/list-interests')
 
 const getAll = async (req, res) => {
   const { catId } = req.query
-  console.log('catId: ', catId)
+  //console.log('catId: ', catId)
   const response = await getAllInterestsService()
   res.json(response)
 }

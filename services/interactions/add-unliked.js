@@ -2,15 +2,12 @@ const InteractionsModel = require('../../models/interactions')
 
 const addUnliked = async (catIdData, catUnlikedData) => {
   try {
-    console.log('Objetos: ', catIdData, catUnlikedData)
-
+    
     const CatId = (await InteractionsModel.findOne({ cat_id: catIdData.cat_id }))
       ? await InteractionsModel.findOne({ cat_id: catIdData.cat_id }) : (await InteractionsModel(catIdData).save())
 
     const CatUnliked = (await InteractionsModel.findOne({ cat_id: catUnlikedData.cat_id }))
       ? await InteractionsModel.findOne({ cat_id: catUnlikedData.cat_id }) : (await InteractionsModel(catUnlikedData).save())
-
-    console.log('Objetos: ', CatId, CatUnliked)
 
     if (CatId.cats_matches.indexOf(CatUnliked.cat_id) >= 0) {
       // Borra catLiked a matches de catId

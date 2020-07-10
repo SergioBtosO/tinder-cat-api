@@ -3,10 +3,8 @@ const InteractionsModel = require('./../../models/interactions')
 
 const listCats = async (catIdData) => {
   try {
-    console.log('catId: ', catIdData)
     // Consulta el cat activo
     const CatId = await CatModel.findById(catIdData)
-    console.log('catId: ', CatId)
     // interacciones del gato activo
     const CatInteractions = (await InteractionsModel.exists({ cat_id: catIdData }))
       ? await InteractionsModel.findOne({ cat_id: catIdData }) : (await InteractionsModel({ cat_id: catIdData }).save())
@@ -17,7 +15,6 @@ const listCats = async (catIdData) => {
       ...CatInteractions.cats_unlikes,
       ...CatInteractions.cats_matches
     ]
-    console.log('Cat Interactions: ', notIds)
 
     // filtro para las preferencia de edad
     const dateCurrent = new Date()
@@ -25,9 +22,6 @@ const listCats = async (catIdData) => {
     const dateTo = new Date(dateCurrent.setFullYear(dateCurrent.getFullYear() - CatId.preferences.age_min))
 
     const dateFrom = new Date(dateCurrent.setFullYear(dateCurrent.getFullYear() - CatId.preferences.age_max))
-
-    console.log('dateTo: ', dateTo)
-    console.log('dateFrom: ', dateFrom)
 
     // consulta por preferencias e interaciones
     const cats = await CatModel.find({

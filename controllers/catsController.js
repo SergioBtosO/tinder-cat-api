@@ -18,7 +18,6 @@ const signup = async (req, res) => {
   res.json(response)
 }
 
-
 const autologin = async (req, res) => {
   const { catId } = req.query
   const response = await autologinService(catId)
