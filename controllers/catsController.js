@@ -5,6 +5,7 @@ const removeInterestService = require('./../services/cats/remove-interest')
 const updatePreferencesService = require('./../services/cats/update-preferences')
 const getAllCatsService = require('./../services/cats/list-cats')
 const autologinService = require('../services/cats/autologin')
+const getMatchesService = require('./../services/cats/list-matches')
 
 const login = async (req, res) => {
   const { email, password } = req.query
@@ -27,6 +28,12 @@ const autologin = async (req, res) => {
 const catList = async (req, res) => {
   const { catId } = req.query
   const response = await getAllCatsService(catId)
+  res.json(response)
+}
+
+const matchesCat = async (req, res) => {
+  const { catId } = req.query
+  const response = await getMatchesService(catId)
   res.json(response)
 }
 
@@ -58,5 +65,6 @@ module.exports = {
   addInterest,
   removeInterest,
   updatePreferences,
-  autologin
+  autologin,
+  matchesCat
 }

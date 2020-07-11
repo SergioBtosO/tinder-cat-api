@@ -6,7 +6,8 @@ const {
   catList,
   addInterest,
   removeInterest,
-  updatePreferences
+  updatePreferences,
+  matchesCat
 } = require('./../controllers/catsController')
 const authMiddleware = require('../middleware/verify-auth')
 
@@ -17,5 +18,6 @@ router.get('/', authMiddleware, catList)
 router.post('/interest', authMiddleware, addInterest)
 router.delete('/interest', authMiddleware, removeInterest)
 router.put('/preferences', authMiddleware, updatePreferences)
+router.get('/matches', authMiddleware, matchesCat)
 
 module.exports = router
